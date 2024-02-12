@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,700&family=Lato:ital,wght@0,700;1,400&display=swap');
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-left {
+    left: 0;
+}
+
+.header-nav {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.header-links a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+}
+
+.header-center {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+}
