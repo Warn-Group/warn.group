@@ -5,7 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import SplineComp from "@/components/spline/spline";
 import HeaderComp from "@/components/header/header";
 
-import "@app/globals.css";
+import "@/app/globals.css";
 
 const inter = Inter({ subsets: ['latin'] })
 
