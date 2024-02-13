@@ -10,13 +10,13 @@ import "@/app/globals.css";
 const inter = Inter({ subsets: ['latin'] })
 
 const lato = Lato({
-  weight: ['700'],
+  weight: ['400', '700'],
   style: ['normal', 'italic'],
   subsets: ['latin']
 });
 
 const dm_sans = DM_Sans({
-  weight: ['800'],
+  weight: ['700', '800'],
   style: ['normal'],
   subsets: ['latin']
 });
