@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Lato, DM_Sans } from 'next/font/google'
+
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import { Analytics } from '@vercel/analytics/react';
 
 import SplineComp from "@/components/spline/spline";
 import HeaderComp from "@/components/header/header";
@@ -37,7 +39,9 @@ export default function RootLayout({
         <HeaderComp/>
         <SplineComp/>
         {children}
+
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
