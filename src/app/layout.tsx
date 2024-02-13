@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Lato, DM_Sans } from 'next/font/google'
+import { Lato, DM_Sans } from 'next/font/google'
+
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import { Analytics } from '@vercel/analytics/react';
 
 import SplineComp from "@/components/spline/spline";
 import HeaderComp from "@/components/header/header";
 
 import "@/app/globals.css";
-
-const inter = Inter({ subsets: ['latin'] })
 
 const lato = Lato({
   weight: ['400', '700'],
@@ -24,6 +24,7 @@ const dm_sans = DM_Sans({
 export const metadata: Metadata = {
   title: "Warn",
   description: "warn.group",
+  applicationName: "Warn"
 };
 
 export default function RootLayout({
@@ -33,11 +34,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${lato.className} ${dm_sans.className}`}>
+      <body className={`${lato.className} ${dm_sans.className}`}>
         <HeaderComp/>
         <SplineComp/>
         {children}
+
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
