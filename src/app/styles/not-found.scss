@@ -1,5 +1,7 @@
+@import '@/app/styles/variables.scss';
+
 .not-found-container {
-    height: calc(100vh - 100px);
+    height: calc(100vh - $header-height);
     text-align: center;
     display: flex;
     flex-direction: column;
