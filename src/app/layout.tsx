@@ -17,7 +17,7 @@ const lato = Lato({
 });
 
 const dm_sans = DM_Sans({
-  weight: ['700', '800'],
+  weight: ['400', '700', '800'],
   style: ['normal'],
   subsets: ['latin']
 });

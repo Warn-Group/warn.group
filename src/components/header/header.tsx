@@ -6,7 +6,7 @@ export default function HeaderComp() {
     return (
         <header>
         <div className="header-left">
-            <Link href="/~/signup">
+            <Link href="/~/auth/signup">
                 <i>LEFT</i>
             </Link>
             <nav className="header-links header-nav">
@@ -26,7 +26,7 @@ export default function HeaderComp() {
                 <Link href="/">R2</Link>
                 <Link href="/">R3</Link>
             </nav>
-            <Link href="/~/signin">
+            <Link href="/~/auth/signin">
                 <i>RIGHT</i>
             </Link>
         </div>
