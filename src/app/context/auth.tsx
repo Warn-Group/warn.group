@@ -1,7 +1,9 @@
 "use client"
 import React, { ReactNode } from 'react';
-import { onAuthStateChanged, getAuth, User } from 'firebase/auth';
+import { onAuthStateChanged, User } from 'firebase/auth';
 import { firebase_auth } from '../lib/firebase/config';
+
+import LoadingComp from '@/components/loading/loading';
 
 interface AuthContextValue {
     user?: User | undefined;
@@ -36,7 +38,7 @@ export const AuthContextProvider = ({ children } : AuthContextProviderProps) => 
     // Inject loading component bellow
     return (
         <AuthContext.Provider value={{ user }}>
-            { loading ? <div>Loading...</div> : children }
+            { loading ? <LoadingComp/> : children }
         </AuthContext.Provider>
     );
 };

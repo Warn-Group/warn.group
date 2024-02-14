@@ -4,12 +4,11 @@ import { Lato, DM_Sans } from 'next/font/google'
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import { Analytics } from '@vercel/analytics/react';
 
-import SplineComp from "@/components/spline/spline";
 import HeaderComp from "@/components/header/header";
 
 import { AuthContextProvider } from "./context/auth";
 
-import "@/app/globals.css";
+import "@/app/styles/globals.css";
 
 const lato = Lato({
   weight: ['400', '700'],
