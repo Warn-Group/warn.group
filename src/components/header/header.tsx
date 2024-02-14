@@ -1,28 +1,34 @@
+import Link from 'next/link'
+
 import '@/components/header/header.css'
 
 export default function HeaderComp() {
     return (
         <header>
         <div className="header-left">
-            <i>LEFT</i>
+            <Link href="/~/signup">
+                <i>LEFT</i>
+            </Link>
             <nav className="header-links header-nav">
-                <a href="/">L0</a>
-                <a href="/">L1</a>
-                <a href="/">L2</a>
-                <a href="/">L3</a>
+                <Link href="/">L0</Link>
+                <Link href="/">L1</Link>
+                <Link href="/">L2</Link>
+                <Link href="/">L3</Link>
             </nav>
         </div>
         <nav className="header-nav">
-            <a className="header-center">WARN</a>
+            <Link href="/" className="header-center">WARN</Link>
         </nav>
         <div className="header-right">
             <nav className="header-links header-nav">
-                <a href="/">R0</a>
-                <a href="/">R1</a>
-                <a href="/">R2</a>
-                <a href="/">R3</a>
+                <Link href="/">R0</Link>
+                <Link href="/">R1</Link>
+                <Link href="/">R2</Link>
+                <Link href="/">R3</Link>
             </nav>
-            <i>RIGHT</i>
+            <Link href="/~/signin">
+                <i>RIGHT</i>
+            </Link>
         </div>
     </header>
     );

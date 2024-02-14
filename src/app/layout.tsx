@@ -4,10 +4,11 @@ import { Lato, DM_Sans } from 'next/font/google'
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import { Analytics } from '@vercel/analytics/react';
 
-import SplineComp from "@/components/spline/spline";
 import HeaderComp from "@/components/header/header";
 
-import "@/app/globals.css";
+import { AuthContextProvider } from "./context/auth";
+
+import "@/app/styles/globals.css";
 
 const lato = Lato({
   weight: ['400', '700'],
@@ -24,10 +25,11 @@ const dm_sans = DM_Sans({
 export const metadata: Metadata = {
   title: "Warn",
   description: "warn.group",
-  applicationName: "Warn"
+  applicationName: "Warn",
+  icons: "./assets/logo-warngroup.png"
 };
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -36,8 +38,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${lato.className} ${dm_sans.className}`}>
         <HeaderComp/>
-        <SplineComp/>
-        {children}
+
+        <AuthContextProvider>
+          {children}
+        </AuthContextProvider>
 
         <SpeedInsights />
         <Analytics />

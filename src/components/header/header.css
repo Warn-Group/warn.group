@@ -9,10 +9,8 @@ header {
 .header-right {
     display: flex;
     align-items: center;
-}
-
-.header-left {
-    left: 0;
+    flex-grow: 1;
+    max-width: 300px;
 }
 
 .header-nav {
@@ -28,6 +26,10 @@ header {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
     font-size: 20px;
+
+    @media (max-width: 750px) {
+        display: none;
+    }
 }
 
 .header-center {
