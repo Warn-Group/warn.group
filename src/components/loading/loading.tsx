@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import "@/components/loading/loading.css";
+import "@/components/loading/loading.scss";
 
 export default function LoadingComp() {
     return (

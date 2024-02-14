@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import '@/components/header/header.css'
+import '@/components/header/header.scss'
 
 export default function HeaderComp() {
     return (

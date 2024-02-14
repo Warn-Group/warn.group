@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import "@/app/styles/not-found.css";
+import "@/app/styles/not-found.scss";
 import SplineNotFoundComp from "@/components/spline/not-found/spline";
 
 export default function NotFound() {

@@ -2,7 +2,7 @@
 
 import Spline from '@splinetool/react-spline';
 
-import '@/components/spline/spline.css'
+import '@/components/spline/spline.scss'
 
 export default function SplineNotFoundComp() {
     return (

@@ -8,7 +8,7 @@ import HeaderComp from "@/components/header/header";
 
 import { AuthContextProvider } from "./context/auth";
 
-import "@/app/styles/globals.css";
+import "@/app/styles/globals.scss";
 
 const lato = Lato({
   weight: ['400', '700'],
@@ -26,7 +26,6 @@ export const metadata: Metadata = {
   title: "Warn",
   description: "warn.group",
   applicationName: "Warn",
-  icons: "./assets/logo-warngroup.png"
 };
 
 export default function Layout({
