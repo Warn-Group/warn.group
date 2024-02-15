@@ -1,10 +1,15 @@
 "use client"
 import React from "react"
+import Link from "next/link";
+import Image from "next/image"
 import { signIn } from "@/app/lib/firebase/auth"
 
-import "@/app/~/auth/auth.scss";
 import SplineSoftobjectComp from "@/components/spline/softobject/spline";
-import Link from "next/link";
+
+import google_icon from "@/app/assets/icons/google_icon.svg"
+import incognito_icon from "@/app/assets/icons/incognito_icon.svg"
+
+import "@/app/~/auth/auth.scss";
 
 export default function Signin() {
     const [email, setEmail] = React.useState('')
@@ -68,7 +73,7 @@ export default function Signin() {
                     <div className="auth-provider-container">
                         <div className="auth-provider-button">
                             <div className="auth-provider-icon-container">
-                                <img className="auth-provider-icon" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google icon."/>
+                                <Image className="auth-provider-icon" src={google_icon} alt="Google icon."/>
                             </div>
                             <span className="auth-provider-text">Continue with Google</span>
                         </div>
@@ -76,7 +81,7 @@ export default function Signin() {
                     <div className="auth-provider-container">
                         <div className="auth-provider-button">
                             <div className="auth-provider-icon-container">
-                                <img className="auth-provider-icon" src="https://lh3.googleusercontent.com/ijcidTpqWgtkjN0azDJbXnh5I2b83D65HHi2N7SqGXCXYM4-MYEcCCibdKBGNKTiug" alt="Google icon."/>
+                                <Image className="auth-provider-icon auth-incognito-image" src={incognito_icon} alt="Google icon."/>
                             </div>
                             <span className="auth-provider-text">Continue Anonymously</span>
                         </div>
