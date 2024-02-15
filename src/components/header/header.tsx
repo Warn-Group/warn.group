@@ -27,7 +27,7 @@ export default function HeaderComp() {
                 <Link href="/">R3</Link>
             </nav>
             <Link href="/~/auth/signin">
-                <i>RIGHT</i>
+                <i>AUTH</i>
             </Link>
         </div>
     </header>

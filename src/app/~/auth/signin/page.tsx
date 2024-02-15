@@ -1,7 +1,8 @@
 "use client"
-import React from "react"
 import Link from "next/link";
 import Image from "next/image"
+import { useRouter } from "next/navigation"; // client == navigation | server == router
+import { useState } from "react";
 import { signIn } from "@/app/lib/firebase/auth"
 
 import SplineSoftobjectComp from "@/components/spline/softobject/spline";
@@ -12,21 +13,34 @@ import incognito_icon from "@/app/assets/icons/incognito_icon.svg"
 import "@/app/~/auth/auth.scss";
 
 export default function Signin() {
-    const [email, setEmail] = React.useState('')
-    const [password, setPassword] = React.useState('')
+    const router = useRouter();
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [state_error, setError] = useState<null | any>(null);
+    const [state_success, setSuccess] = useState<boolean>(false);
 
     const handleForm = async (event: { preventDefault: () => void }) => {
-        event.preventDefault()
+        event.preventDefault();
 
         const { result, error } = await signIn(email, password);
 
-        if (error) {
-            return console.log(error)
-        }
+        try {
+            // @ts-ignore comment
+            event.target[1].value = '';
+        } catch (_) {}
+        setPassword('');
 
-        // else successful
-        console.log(result)
-        return;
+        if (error) {
+            setError(error);
+
+            setTimeout(() => setError(null), 5 * 1000);
+
+            return console.log(error);
+        }
+        setError(null);
+        setSuccess(true);
+        return router.push('/');
     }
     return (
         <div className="auth-root-container">
@@ -63,6 +77,8 @@ export default function Signin() {
                                 <div className="auth-form-small-text">Forgot password ?</div>
                             </div>
                             <div className="auth-form-submit-container">
+                                {state_error && <p className="auth-form-error">Invalid credentials.</p>}
+                                {state_success && <p className="auth-form-success">Login successful.</p>}
                                 <button className="auth-form-submit" type="submit">Log in</button>
                             </div>
                         </div>
