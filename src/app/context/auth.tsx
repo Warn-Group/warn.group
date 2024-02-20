@@ -24,7 +24,6 @@ export const AuthContextProvider = ({ children } : AuthContextProviderProps) => 
     React.useEffect(() => {
         const unsubscribe = onAuthStateChanged(firebase_auth, (user) => {
             if (user) {
-                // @ts-ignore comment
                 setUser(user);
             } else {
                 setUser(undefined);
