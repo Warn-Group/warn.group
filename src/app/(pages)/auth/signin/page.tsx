@@ -10,7 +10,7 @@ import SplineSoftobjectComp from "@/components/spline/softobject/spline";
 import google_icon from "@/app/assets/icons/google_icon.svg"
 import incognito_icon from "@/app/assets/icons/incognito_icon.svg"
 
-import "@/app/~/auth/auth.scss";
+import "@/app/(pages)/auth/auth.scss";
 
 export default function Signin() {
     const router = useRouter();
@@ -73,7 +73,7 @@ export default function Signin() {
                                 />
                             </div>
                             <div className="auth-form-small-texts">
-                                <Link href="/~/auth/signup" className="auth-form-small-text">Create an account</Link>
+                                <Link href="/auth/signup" className="auth-form-small-text">Create an account</Link>
                                 <div className="auth-form-small-text">Forgot password ?</div>
                             </div>
                             <div className="auth-form-submit-container">

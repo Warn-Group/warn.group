@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
         rules: {
             userAgent: '*',
             allow: ['/'],
-            disallow: ['/~/profile/'],
+            disallow: ['/profile/'],
         },
         sitemap: 'https://warn.group/sitemap.xml',
     }
