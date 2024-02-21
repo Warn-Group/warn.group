@@ -101,6 +101,10 @@
     margin: 0;
 }
 
+.auth-form-select {
+    @extend .auth-form-input;
+}
+
 .auth-form-small-texts {
     display: flex;
     justify-content: space-between;
@@ -143,7 +147,6 @@
     margin-top: 5px;
     border: 1px solid $background-darkgrey-light;
     border-radius: 5px;
-    padding-left: 10px;
 
     font-size: 15px;
     font-family: 'Work Sans', sans-serif;
