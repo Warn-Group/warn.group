@@ -9,6 +9,7 @@ import HeaderComp from "@/components/header/header";
 import { AuthContextProvider } from "./context/auth";
 
 import "@/app/styles/globals.scss";
+import { PresenceContextProvider } from "./context/presence";
 
 const lato = Lato({
   weight: ['400', '700'],
@@ -39,7 +40,9 @@ export default function Layout({
         <HeaderComp/>
 
         <AuthContextProvider>
-          {children}
+          <PresenceContextProvider>
+            {children}
+          </PresenceContextProvider>
         </AuthContextProvider>
 
         <SpeedInsights />

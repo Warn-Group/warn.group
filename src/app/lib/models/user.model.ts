@@ -1,4 +1,4 @@
-import { Timestamp } from "firebase/firestore";
+import { IPresence } from "./presence.model";
 
 type Optional<T> = T | null;
 
@@ -6,11 +6,11 @@ export declare interface IUser {
     displayName: string,
     uid: string,
     metadata : {
-        createdAt: Timestamp,
-        lastLoginAt: Timestamp
+        createdAt: number | object
     },
-
-    birthdate: Optional<Timestamp>,
-    gender: Optional<string>,
+    presence: IPresence,
+    
+    birthdate: number,
+    gender: string,
     photoURL: Optional<string>,
 }
