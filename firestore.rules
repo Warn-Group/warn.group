@@ -7,10 +7,22 @@ service cloud.firestore {
             allow read, write: if false;
         }
 
-        // Users
+        // Global chat
+        match /messages/global {
+            allow read: if isAuth();
+            allow write: if isAuth();
+        }
+
+        // Users (deprecated)
         match /users/{userId} {
-        allow read: if isAuth();
-        allow write: if isOwner(userId);
+            allow read: if isAuth();
+            allow write: if isOwner(userId);
+        }
+
+        // Status (deprecated)
+        match /status/{userId} {
+            allow read: if isAuth();
+            allow write: if isOwner(userId);
         }
 
         // Utils functions

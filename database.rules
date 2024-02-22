@@ -1,0 +1,47 @@
+// https://firebase.google.com/docs/database/security/rules-conditions
+{
+    "rules": {
+        // Default
+        ".read": false,
+        ".write": false,
+
+        // Users
+        "users": {
+            ".read": "auth !== null",
+            "$uid": {
+                ".read": "auth !== null",
+                ".write": "auth !== null && auth.uid === $uid",
+                ".validate": "newData.hasChildren(['displayName', 'uid', 'metadata', 'presence', 'birthdate', 'gender', 'photoURL'])",
+                
+                "displayName": {
+                    ".validate": "newData.isString()" 
+                },
+                "uid": {
+                    ".validate": "newData.isString()" 
+                },
+                "birthdate": {
+                    ".validate": "true" 
+                },
+                "gender": {
+                    ".validate": "newData.isString()" 
+                },
+                "photoURL": {
+                    ".validate": "true" 
+                },
+                "metadata": {
+                    "createdAt": {
+                        ".validate": "true"
+                    }
+                },
+                "presence": {
+                "lastChanged": {
+                        ".validate": "true"
+                    },
+                    "presence": {
+                        ".validate": "newData.isString()"
+                    }
+                }
+            }
+        }
+    }
+}
