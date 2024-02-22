@@ -4,6 +4,9 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"; // client == navigation | server == router
 import { useState } from "react";
 import { signUp } from "@/app/lib/firebase/auth"
+import { IUser } from "@/app/lib/models/user.model";
+import { ref, serverTimestamp, set } from "firebase/database";
+import { firebase_database } from "@/app/lib/firebase/config";
 
 import SplineSoftobjectComp from "@/components/spline/softobject/spline";
 
@@ -11,9 +14,6 @@ import google_icon from "@/app/assets/icons/google_icon.svg"
 import incognito_icon from "@/app/assets/icons/incognito_icon.svg"
 
 import "@/app/(pages)/auth/auth.scss";
-import { addData } from "@/app/lib/firebase/firestore";
-import { IUser } from "@/app/lib/models/user.model";
-import { Timestamp } from "firebase/firestore";
 
 export default function Signup() {
     const router = useRouter();
@@ -57,8 +57,6 @@ export default function Signup() {
     const handleStep2Form = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
 
-        console.log(email, password, confirm_password, displayname, birthdate, gender);
-
         setStep2Error(null);
 
         if (displayname.length < 3) {
@@ -88,25 +86,27 @@ export default function Signup() {
             setStep2Error(error!.message);
 
             setTimeout(() => setStep2Error(null), 10 * 1000);
+            return;
         }
-
-        console.log(result);
-        console.log(result?.user.metadata.creationTime);
-        console.log(result?.user.metadata.lastSignInTime);
 
         const data = {
             displayName: displayname,
-            birthdate: Timestamp.fromMillis(new Date(parseInt(birthdate, 10), 0).getTime()),
+            birthdate: new Date(parseInt(birthdate, 10), 0).getTime(),
             metadata: {
-                createdAt: result?.user.metadata.creationTime ? Timestamp.fromDate(new Date(result.user.metadata.creationTime)) : null,
-                lastLoginAt: result?.user.metadata.lastSignInTime ? Timestamp.fromDate(new Date(result.user.metadata.lastSignInTime)) : null,
+                createdAt: serverTimestamp(),
+            },
+            presence: {
+                lastChanged: serverTimestamp(),
+                presence: 'online',
             },
             gender: gender,
             photoURL: null,
             uid: result?.user.uid
         } as IUser
 
-        await addData(`/users/${result?.user.uid}`, data)
+        const userRef = ref(firebase_database, `users/${result?.user.uid}`)
+
+        await set(userRef, data)
 
         setStep2Error(null);
         setSuccess(true);
