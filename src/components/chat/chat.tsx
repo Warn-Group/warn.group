@@ -10,11 +10,14 @@ import { IDefaultMessage, IMessages } from "@/app/lib/models/messages.model";
 import { IUser } from "@/app/lib/models/user.model";
 
 import "@/components/chat/chat.scss";
+import LoadingComp from "../loading/loading";
 
 export default function ChatComp({ chatid }: { chatid: string }) {
     const [message, setMessage] = useState('')
     const [messagesList, setMessagesList] = useState<IDefaultMessage[]>([])
     const [cachedUsers, setCachedUsers] = useState<Record<string, IUser>>();
+
+    const [loadingMessages, setLoadingMessages] = useState(true);
 
     const bottomRef = useRef<HTMLDivElement>(null);
     const messageRef = useRef<HTMLDivElement>(null);
@@ -90,6 +93,8 @@ export default function ChatComp({ chatid }: { chatid: string }) {
     useEffect(() => {
         const margin = 400;
 
+        setLoadingMessages(false);
+
         bottomRef?.current?.scrollIntoView({behavior: 'smooth'});
 
         // if (messageRef.current && messageRef.current.scrollHeight - messageRef.current.scrollTop <= messageRef.current.clientHeight + margin) {
@@ -103,22 +108,26 @@ export default function ChatComp({ chatid }: { chatid: string }) {
                 <h2 className="chat-title">{chatid}</h2>
             </div>
             <div className="chat-messages-container" ref={messageRef}>
-                {messagesList?.length > 0 && messagesList.map((message, index) => (
-                    <div key={`message-${index}`} className="chat-message-container">
-                        {cachedUsers &&
-                            <AvatarComp user={cachedUsers[message.sentBy]}/>
-                        }
-                        <div className="chat-message-sub-container">
-                            <div className="chat-message-info-container">
-                                <div className="chat-message-info-displayname">{cachedUsers && cachedUsers[message.sentBy] ? cachedUsers[message.sentBy].displayName : 'Anonymous'}</div>
-                                <div className="chat-message-info-sentat">{message.sentAt.toDate().toLocaleTimeString()} {message.sentAt.toDate().toLocaleDateString()}</div>
+                { loadingMessages || messagesList?.length < 1 ? <LoadingComp style={{width: '100%', height: '100%'}}/> :
+                    <>
+                        {messagesList?.length > 0 && messagesList.map((message, index) => (
+                            <div key={`message-${index}`} className="chat-message-container">
+                                {cachedUsers &&
+                                    <AvatarComp user={cachedUsers[message.sentBy]}/>
+                                }
+                                <div className="chat-message-sub-container">
+                                    <div className="chat-message-info-container">
+                                        <div className="chat-message-info-displayname">{cachedUsers && cachedUsers[message.sentBy] ? cachedUsers[message.sentBy].displayName : 'Anonymous'}</div>
+                                        <div className="chat-message-info-sentat">{message.sentAt.toDate().toLocaleTimeString()} {message.sentAt.toDate().toLocaleDateString()}</div>
+                                    </div>
+                                    <div className="chat-message-content-container">
+                                        <div className="chat-message-content">{message.content}</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="chat-message-content-container">
-                                <div className="chat-message-content">{message.content}</div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+                        ))}
+                    </>
+                }
                 <div ref={bottomRef}></div>
             </div>
             <form onSubmit={handleForm} className="chat-input-container">

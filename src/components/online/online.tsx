@@ -7,11 +7,14 @@ import { IUser } from "@/app/lib/models/user.model";
 import AvatarComp from "../avatar/avatar";
 
 import "@/components/online/online.scss";
+import LoadingComp from "../loading/loading";
 
 export default function OnlineComp() {
     const [presences, setPresences] = useState<Record<string, IUser>>();
     const [initialFetchDone, setInitialFetchDone] = useState(false);
     const [onlineUsers, setOnlineUsers] = useState<IUser[]>([]);
+
+    const [loadingOnline, setLoadingOnline] = useState(true);
 
     const presencesRef = ref(firebase_database, 'users');
 
@@ -50,6 +53,7 @@ export default function OnlineComp() {
     }, []);
 
     useEffect(() => {
+        setLoadingOnline(false);
         if (initialFetchDone && presences) {
             updateOnlineUsers();
         }
@@ -70,17 +74,21 @@ export default function OnlineComp() {
                 <h2 className="chat-online-title">Online member{onlineUsers.length > 1 ? 's' : ''} ({onlineUsers.length})</h2>
             </div>
             <ul>
-                {onlineUsers.map((user) => (
-                    <li key={user.uid}>
-                        <div className="chat-online-user-container">
-                            <AvatarComp user={user} presence={true}/>
-                            <div className="chat-online-user-info-container">
-                                <span className="chat-online-user-info-displayname">{user.displayName}</span>
-                                <span className="chat-online-user-info-status">{user.presence.presence}</span>
+            { loadingOnline ? <LoadingComp style={{width:'100%', height:'100%'}}/> :
+                <>
+                    {onlineUsers.map((user) => (
+                        <li key={user.uid}>
+                            <div className="chat-online-user-container">
+                                <AvatarComp user={user} presence={true}/>
+                                <div className="chat-online-user-info-container">
+                                    <span className="chat-online-user-info-displayname">{user.displayName}</span>
+                                    <span className="chat-online-user-info-status">{user.presence.presence}</span>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                ))}
+                        </li>
+                    ))}
+                </>
+                }
             </ul>
         </div>
     );

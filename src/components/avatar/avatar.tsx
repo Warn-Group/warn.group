@@ -1,4 +1,3 @@
-"use client"
 import Image from "next/image"
 import { IUser } from "@/app/lib/models/user.model";
 
