@@ -1,11 +1,10 @@
 "use client"
-import Image from "next/image"
-import { firebase_database } from "@/app/lib/firebase/config";
 import { useEffect, useState } from "react";
 import { get, onChildAdded, onChildChanged, ref } from 'firebase/database';
-import { IUser } from "@/app/lib/models/user.model";
 
-import no_profile from "@/app/assets/icons/no_profile_icon.svg"
+import { firebase_database } from "@/app/lib/firebase/config";
+import { IUser } from "@/app/lib/models/user.model";
+import AvatarComp from "../avatar/avatar";
 
 import "@/components/online/online.scss";
 
@@ -74,14 +73,7 @@ export default function OnlineComp() {
                 {onlineUsers.map((user) => (
                     <li key={user.uid}>
                         <div className="chat-online-user-container">
-                            <div className="chat-online-user-avatar-container">
-                                { user.photoURL ?
-                                    <img className="chat-online-user-avatar" src={user.photoURL} alt="profile-picture"/>
-                                : 
-                                    <Image className="chat-online-user-avatar" src={user.photoURL ? user.photoURL : no_profile} alt="profile-picture"/>
-                                }
-                                <div className="chat-online-user-avatar-presence"></div>
-                            </div>
+                            <AvatarComp user={user} presence={true}/>
                             <div className="chat-online-user-info-container">
                                 <span className="chat-online-user-info-displayname">{user.displayName}</span>
                                 <span className="chat-online-user-info-status">{user.presence.presence}</span>
