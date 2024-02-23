@@ -4,6 +4,7 @@ import { firebase_auth } from "@/app/lib/firebase/config";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import LoadingComp from "@/components/loading/loading";
+import { ROUTE_SIGNIN } from "@/app/lib/routes/routes";
 
 export default function Layout({
     children,
@@ -17,7 +18,7 @@ export default function Layout({
 
     useEffect(() => {
         if (!user) {
-            router.push(`/auth/signin?redirect=${pathname}`);
+            router.push(`${ROUTE_SIGNIN}?redirect=${pathname}`);
         }
     }, [user]);
 

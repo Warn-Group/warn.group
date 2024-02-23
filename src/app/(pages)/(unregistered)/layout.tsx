@@ -16,7 +16,7 @@ export default function Layout({
 
     useEffect(() => {
         if (user) {
-            router.replace('/');
+            router.push('/');
         }
     }, [user]);
 

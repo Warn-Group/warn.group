@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useRouter, useSearchParams } from "next/navigation"; // client == navigation | server == router
 import { FormEvent, useRef, useState } from "react";
 import { signIn } from "@/app/lib/firebase/auth"
+import { ROUTE_SIGNUP } from "@/app/lib/routes/routes";
 
 import SplineSoftobjectComp from "@/components/spline/softobject/spline";
 
@@ -45,7 +46,7 @@ export default function Signin() {
         }
         setError(null);
         setSuccess(true);
-        return router.replace(redirectTo);
+        return router.push(redirectTo);
     }
     return (
         <div className="auth-root-container">
@@ -77,7 +78,7 @@ export default function Signin() {
                                 />
                             </div>
                             <div className="auth-form-small-texts">
-                                <Link href="/auth/signup" className="auth-form-small-text">Create an account</Link>
+                                <Link href={`${ROUTE_SIGNUP}${searchParams.get("redirect") && "?redirect=" + searchParams.get("redirect")}`} className="auth-form-small-text">Create an account</Link>
                                 <div className="auth-form-small-text">Forgot password ?</div>
                             </div>
                             <div className="auth-form-submit-container">

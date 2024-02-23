@@ -1,12 +1,13 @@
 "use client"
 import Link from "next/link";
 import Image from "next/image"
-import { useRouter } from "next/navigation"; // client == navigation | server == router
+import { useRouter, useSearchParams } from "next/navigation"; // client == navigation | server == router
 import { useState } from "react";
 import { signUp } from "@/app/lib/firebase/auth"
 import { IUser } from "@/app/lib/models/user.model";
 import { ref, serverTimestamp, set } from "firebase/database";
 import { firebase_database } from "@/app/lib/firebase/config";
+import { ROUTE_SIGNIN } from "@/app/lib/routes/routes";
 
 import SplineSoftobjectComp from "@/components/spline/softobject/spline";
 
@@ -17,6 +18,7 @@ import "@/app/(pages)/(unregistered)/auth/auth.scss";
 
 export default function Signup() {
     const router = useRouter();
+    const searchParams = useSearchParams();
 
     const [step, setStep] = useState<number>(1);
 
@@ -36,6 +38,8 @@ export default function Signup() {
 
     const [state_step2_error, setStep2Error] = useState<null | any>(null);
     const [state_success, setSuccess] = useState<boolean>(false);
+
+    const redirectTo = searchParams.get("redirect") ?? '/'
 
     const handleStep1Form = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
@@ -110,7 +114,7 @@ export default function Signup() {
 
         setStep2Error(null);
         setSuccess(true);
-        return router.push('/');
+        return router.push(redirectTo);
     }
     return (
         <div className="auth-root-container" style={{ justifyContent: "flex-start"}}>
@@ -167,7 +171,7 @@ export default function Signup() {
                                 </div>
                                 <div className="auth-form-small-texts">
                                     <div className="auth-form-small-text">1/2</div>
-                                    <Link href="/auth/signin" className="auth-form-small-text">Already member ?</Link>
+                                    <Link href={`${ROUTE_SIGNIN}${searchParams.get("redirect") && "?redirect=" + searchParams.get("redirect")}`} className="auth-form-small-text">Already member ?</Link>
                                 </div>
                                 <div className="auth-form-submit-container">
                                     {state_step1_error && <p className="auth-form-error">{state_step1_error}</p>}
@@ -220,7 +224,7 @@ export default function Signup() {
                                 <div className="auth-form-small-texts">
                                     {/* onClick={backStep} */}
                                     <div className="auth-form-small-text">2/2</div>
-                                    <Link href="/auth/signin" className="auth-form-small-text">Already member ?</Link>
+                                    <Link href={`${ROUTE_SIGNIN}${searchParams.get("redirect") && "?redirect=" + searchParams.get("redirect")}`} className="auth-form-small-text">Already member ?</Link>
                                 </div>
                                 <div className="auth-form-submit-container">
                                     {state_step2_error && <p className="auth-form-error">{state_step2_error}</p>}
