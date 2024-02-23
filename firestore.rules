@@ -13,6 +13,12 @@ service cloud.firestore {
             allow write: if isAuth();
         }
 
+        // Messages
+        match /messages/{chatId} {
+            allow read: if isAuth() && chatId.size() == 57 && isUserInChatId(chatId);
+            allow write: if isAuth() && chatId.size() == 57 && isUserInChatId(chatId);
+        }
+
         // Users (deprecated)
         match /users/{userId} {
             allow read: if isAuth();
@@ -32,6 +38,10 @@ service cloud.firestore {
 
         function isAuth() {
             return request.auth != null;
+        }
+
+        function isUserInChatId(chatId) {
+            return request.auth.uid == chatId[0:28] || request.auth.uid == chatId[29:57];
         }
     }
 }

@@ -8,6 +8,6 @@ export declare interface IDefaultMessage {
 }
 
 export declare interface IMessages {
-    createdAt: Timestamp,
+    //createdAt: Timestamp, // messages[0] == createdAt ?
     messages: IDefaultMessage[]
 }
