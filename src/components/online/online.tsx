@@ -81,21 +81,26 @@ export default function OnlineComp() {
             <ul>
             { loadingOnline ? <LoadingComp style={{width:'100%', height:'100%'}}/> :
                 <>
-                    {onlineUsers.map((user) => (
-                        <Link href={user.uid == selfUser.user?.uid ? '' : `${ROUTE_CHAT}/${user.uid}`}>
-                            <li key={user.uid}>
-                                <div className="chat-online-user-container">
-                                    <AvatarComp user={user} presence={true}/>
-                                    <div className="chat-online-user-info-container">
-                                        <span className="chat-online-user-info-displayname">{user.displayName}</span>
-                                        <span className="chat-online-user-info-status">{user.presence.presence}</span>
-                                    </div>
+                    {onlineUsers.map((user, index) => (
+                        <li key={`${index}-${user.uid}`}>
+                            <Link 
+                                href={
+                                    user.uid === selfUser.user?.uid 
+                                    ? '' 
+                                    : `${ROUTE_CHAT}/${user.uid}`
+                                } 
+                                className="chat-online-user-container"
+                                >
+                                <AvatarComp user={user} presence={true}/>
+                                <div className="chat-online-user-info-container">
+                                    <span className="chat-online-user-info-displayname">{user.displayName}</span>
+                                    <span className="chat-online-user-info-status">{user.presence.presence}</span>
                                 </div>
-                            </li>
-                        </Link>
+                            </Link>
+                        </li>
                     ))}
                 </>
-                }
+            }
             </ul>
         </div>
     );
