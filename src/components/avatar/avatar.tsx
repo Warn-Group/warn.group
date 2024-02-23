@@ -9,12 +9,23 @@ export default function AvatarComp({ user, presence = false }: { user: IUser, pr
     return (
         <div className="chat-online-user-avatar-container">
             { user.photoURL ?
-                <img className="chat-online-user-avatar" src={user.photoURL} alt="profile-picture"/>
-            : 
-                <Image className="chat-online-user-avatar" src={user.photoURL ? user.photoURL : no_profile} alt="profile-picture"/>
+                <Image
+                    src={user.photoURL} 
+                    width={0} 
+                    height={0} 
+                    loader={({src}) => src} 
+                    className="chat-online-user-avatar" 
+                    alt="profile-picture"
+                />
+            :
+                <Image
+                    src={no_profile}
+                    className="chat-online-user-avatar"
+                    alt="profile-picture"
+                />
             }
             { presence &&
-                <div className="chat-online-user-avatar-presence"></div>
+                <div className="chat-online-user-avatar-presence"/>
             }
         </div>
     );

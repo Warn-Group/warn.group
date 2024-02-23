@@ -54,7 +54,7 @@ export const PresenceContextProvider = ({ children }: PresenceContextProviderPro
         });
 
         return () => unsubscribeAuthState();
-    }, []);
+    });
 
     return (
         <PresenceContext.Provider value={{ presence }}>
