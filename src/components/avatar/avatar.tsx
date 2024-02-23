@@ -6,7 +6,7 @@ import no_profile from "@/app/assets/icons/no_profile_icon.svg"
 
 import "@/components/avatar/avatar.scss";
 
-export default function AvatarComp({ user, presence = false }: { user: IUser, presence: boolean }) {
+export default function AvatarComp({ user, presence = false }: { user: IUser, presence?: boolean }) {
     return (
         <div className="chat-online-user-avatar-container">
             { user.photoURL ?

@@ -1,15 +1,13 @@
 "use client"
-import Image from "next/image"
-import { firebase_database, firebase_firestore } from "@/app/lib/firebase/config";
 import { useEffect, useRef, useState } from "react";
 import { Timestamp, arrayUnion, doc, onSnapshot, setDoc } from "firebase/firestore";
-import { useAuthContext } from "@/app/context/auth";
 import { onValue, ref } from "firebase/database";
+import { firebase_database, firebase_firestore } from "@/app/lib/firebase/config";
+import { useAuthContext } from "@/app/context/auth";
 
+import AvatarComp from "../avatar/avatar";
 import { IDefaultMessage, IMessages } from "@/app/lib/models/messages.model";
 import { IUser } from "@/app/lib/models/user.model";
-
-import no_profile from "@/app/assets/icons/no_profile_icon.svg"
 
 import "@/components/chat/chat.scss";
 
@@ -107,13 +105,9 @@ export default function ChatComp({ chatid }: { chatid: string }) {
             <div className="chat-messages-container" ref={messageRef}>
                 {messagesList?.length > 0 && messagesList.map((message, index) => (
                     <div key={`message-${index}`} className="chat-message-container">
-                        <div className="chat-message-avatar-container">
-                            {cachedUsers && cachedUsers[message.sentBy].photoURL ?
-                                <img className="chat-message-avatar" src={cachedUsers[message.sentBy].photoURL ?? no_profile} alt="profile-picture" />
-                                :
-                                <Image className="chat-message-avatar" src={no_profile} alt="profile-picture" />
-                            }
-                        </div>
+                        {cachedUsers &&
+                            <AvatarComp user={cachedUsers[message.sentBy]}/>
+                        }
                         <div className="chat-message-sub-container">
                             <div className="chat-message-info-container">
                                 <div className="chat-message-info-displayname">{cachedUsers && cachedUsers[message.sentBy] ? cachedUsers[message.sentBy].displayName : 'Anonymous'}</div>
