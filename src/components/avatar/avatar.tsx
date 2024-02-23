@@ -14,6 +14,7 @@ export default function AvatarComp({ user, presence = false }: { user: IUser, pr
                     width={0} 
                     height={0} 
                     loader={({src}) => src} 
+                    unoptimized={true}
                     className="chat-online-user-avatar" 
                     alt="profile-picture"
                 />
