@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image"
 import { useRouter } from "next/navigation"; // client == navigation | server == router
-import { useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { signIn } from "@/app/lib/firebase/auth"
 
 import SplineSoftobjectComp from "@/components/spline/softobject/spline";
@@ -15,28 +15,30 @@ import "@/app/(pages)/auth/auth.scss";
 export default function Signin() {
     const router = useRouter();
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
     const [state_error, setError] = useState<null | any>(null);
     const [state_success, setSuccess] = useState<boolean>(false);
 
-    const handleForm = async (event: { preventDefault: () => void }) => {
-        event.preventDefault();
+    const refPassword = useRef<HTMLInputElement>(null);
+
+    const handleForm = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault(); // prevent page refresh
+
+        const formData = new FormData(event.currentTarget);
+        const email = formData.get('email') as string
+        const password = formData.get('password') as string
 
         const { result, error } = await signIn(email, password);
-
-        try {
-            // @ts-ignore comment
-            event.target[1].value = '';
-        } catch (_) {}
-        setPassword('');
+        
+        if (refPassword && refPassword.current) {
+            refPassword.current.value = '';
+        }
 
         if (error) {
             setError(error);
 
             setTimeout(() => setError(null), 5 * 1000);
 
-            return console.log(error);
+            return;// console.log(error);
         }
         setError(null);
         setSuccess(true);
@@ -53,7 +55,6 @@ export default function Signin() {
                             <div className="auth-form-input-container">
                                 <input
                                     className="auth-form-input"
-                                    onChange={(e) => setEmail(e.target.value)}
                                     required
                                     type="email"
                                     name="email"
@@ -64,12 +65,12 @@ export default function Signin() {
                             <div className="auth-form-input-container">
                                 <input
                                     className="auth-form-input"
-                                    onChange={(e) => setPassword(e.target.value)}
                                     required
                                     type="password"
                                     name="password"
                                     id="password"
                                     placeholder="Password"
+                                    ref={refPassword}
                                 />
                             </div>
                             <div className="auth-form-small-texts">
