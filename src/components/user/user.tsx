@@ -1,19 +1,18 @@
 "use client"
-import { useAuthContext } from "@/app/context/auth";
-import { firebase_firestore } from "@/app/lib/firebase/config";
+import { firebase_database } from "@/app/lib/firebase/config";
 import { IUser } from "@/app/lib/models/user.model";
-import { doc, onSnapshot } from "firebase/firestore";
+import { onValue, ref } from "firebase/database";
 import { useEffect, useState } from "react";
 
 export default function UserComp({ uid }: { uid: string }) {
-    const { user } = useAuthContext();
-
     const [fetchedUser, setFetchedUser] = useState<IUser | null>(null);
 
+    const userRef = ref(firebase_database, `users/${uid}`);
+
     useEffect(() => {
-        const unsubscribe = onSnapshot(doc(firebase_firestore, `users/${uid}`), (snapshot) => {
+        const unsubscribe = onValue(userRef, (snapshot) => {
             if (snapshot.exists()) {
-                const updatedData = snapshot.data() as IUser;
+                const updatedData = snapshot.val() as IUser;
                 setFetchedUser(updatedData);
             } else {
                 setFetchedUser(null);
