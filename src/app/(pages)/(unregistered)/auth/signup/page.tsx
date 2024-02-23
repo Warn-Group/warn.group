@@ -13,7 +13,7 @@ import SplineSoftobjectComp from "@/components/spline/softobject/spline";
 import google_icon from "@/app/assets/icons/google_icon.svg"
 import incognito_icon from "@/app/assets/icons/incognito_icon.svg"
 
-import "@/app/(pages)/auth/auth.scss";
+import "@/app/(pages)/(unregistered)/auth/auth.scss";
 
 export default function Signup() {
     const router = useRouter();

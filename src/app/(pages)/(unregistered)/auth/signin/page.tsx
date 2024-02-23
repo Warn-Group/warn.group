@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link";
 import Image from "next/image"
-import { useRouter } from "next/navigation"; // client == navigation | server == router
+import { useRouter, useSearchParams } from "next/navigation"; // client == navigation | server == router
 import { FormEvent, useRef, useState } from "react";
 import { signIn } from "@/app/lib/firebase/auth"
 
@@ -10,15 +10,18 @@ import SplineSoftobjectComp from "@/components/spline/softobject/spline";
 import google_icon from "@/app/assets/icons/google_icon.svg"
 import incognito_icon from "@/app/assets/icons/incognito_icon.svg"
 
-import "@/app/(pages)/auth/auth.scss";
+import "@/app/(pages)/(unregistered)/auth/auth.scss";
 
 export default function Signin() {
     const router = useRouter();
+    const searchParams = useSearchParams();
 
     const [state_error, setError] = useState<null | any>(null);
     const [state_success, setSuccess] = useState<boolean>(false);
 
     const refPassword = useRef<HTMLInputElement>(null);
+
+    const redirectTo = searchParams.get("redirect") ?? '/'
 
     const handleForm = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault(); // prevent page refresh
@@ -42,7 +45,7 @@ export default function Signin() {
         }
         setError(null);
         setSuccess(true);
-        return router.push('/');
+        return router.replace(redirectTo);
     }
     return (
         <div className="auth-root-container">

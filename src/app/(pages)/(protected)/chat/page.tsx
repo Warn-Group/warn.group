@@ -5,7 +5,7 @@ import SplineSoftobjectComp from "@/components/spline/softobject/spline";
 import OnlineComp from "@/components/online/online";
 import ChatComp from "@/components/chat/chat";
 
-import "@/app/(pages)/chat/chat.scss";
+import "@/app/(pages)/(protected)/chat/chat.scss";
 
 export default function Chat() {
     return (
