@@ -1,5 +1,5 @@
 export default function Terms() {
     return (
-        <div>This page doesn't exist yet</div>
+        <div>This page does not exist yet</div>
     );
 }
