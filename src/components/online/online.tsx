@@ -5,12 +5,11 @@ import { get, onChildAdded, onChildChanged, ref } from 'firebase/database';
 import { firebase_database } from "@/app/lib/firebase/config";
 import { IUser } from "@/app/lib/models/user.model";
 import AvatarComp from "../avatar/avatar";
+import MiniProfileComp from "../miniprofile/miniprofile";
+
+import { Popover, PopoverTrigger, PopoverContent, Skeleton } from "@nextui-org/react";
 
 import "@/components/online/online.scss";
-import LoadingComp from "../loading/loading";
-import Link from "next/link";
-import { ROUTE_CHAT } from "@/app/lib/routes/routes";
-import { useAuthContext } from "@/app/context/auth";
 
 export default function OnlineComp() {
     const [presences, setPresences] = useState<Record<string, IUser>>();
@@ -18,8 +17,6 @@ export default function OnlineComp() {
     const [onlineUsers, setOnlineUsers] = useState<IUser[]>([]);
 
     const [loadingOnline, setLoadingOnline] = useState(true);
-
-    const selfUser = useAuthContext();
 
     const presencesRef = ref(firebase_database, 'users');
 
@@ -78,26 +75,53 @@ export default function OnlineComp() {
             <div className="chat-online-title-container">
                 <h2 className="chat-online-title">Online member{onlineUsers.length > 1 ? 's' : ''} ({onlineUsers.length})</h2>
             </div>
-            <ul>
-            { loadingOnline ? <LoadingComp style={{width:'100%', height:'100%'}}/> :
-                <>
-                    {onlineUsers.map((user, index) => (
-                        <li key={`${index}-${user.uid}`}>
-                            <Link 
-                                href={
-                                    user.uid === selfUser.user?.uid 
-                                    ? '' 
-                                    : `${ROUTE_CHAT}/${user.uid}`
-                                } 
-                                className="chat-online-user-container"
-                                >
-                                <AvatarComp user={user} presence={true}/>
-                                <div className="chat-online-user-info-container">
-                                    <span className="chat-online-user-info-displayname">{user.displayName}</span>
-                                    <span className="chat-online-user-info-status">{user.presence.presence}</span>
+            <ul className="chat-online-user-root-container">
+            { 
+                loadingOnline 
+                ? 
+                    <>
+                        { Array.from({ length: 15 }, () => undefined).map((_, index) => (
+                            <div key={index} className="chat-online-loading-container">
+                                <div>
+                                    <Skeleton className="chat-online-loading-avatar"/>
+                                </div>  
+                                <div className="chat-online-loading-texts">
+                                    <Skeleton className="chat-online-loading-text-big"/>
+                                    <Skeleton className="chat-online-loading-text-small"/>
                                 </div>
-                            </Link>
-                        </li>
+                            </div>
+                        ))}
+                    </>
+                : <>
+                    {
+                        onlineUsers.map((user, index) => (
+                            <Popover
+                                key={`${index}-${user.uid}`}
+                                showArrow
+                                placement="left"
+                                classNames={{
+                                    base: [  
+                                        "before:bg-neutral-950"
+                                    ],
+                                    content: [
+                                        "py-3 px-4 border-0 border-default-200",
+                                        "bg-neutral-950",
+                                    ],
+                                }}
+                            >
+                                <PopoverTrigger>
+                                    <li className="flex items-center my-2 ml-2">
+                                        <AvatarComp user={user} presence={true} styleWidth={50} styleHeight={50}/>
+                                        <div className="chat-online-user-info-container">
+                                            <span className="chat-online-user-info-displayname">{user.displayName}</span>
+                                            <span className="chat-online-user-info-status">{user.presence.presence}</span>
+                                        </div>
+                                    </li>
+                                </PopoverTrigger>
+                                <PopoverContent className="p-1">
+                                    <MiniProfileComp user={user}/>
+                                </PopoverContent>
+                            </Popover>
                     ))}
                 </>
             }

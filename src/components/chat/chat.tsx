@@ -4,20 +4,29 @@ import { Timestamp, arrayUnion, doc, onSnapshot, setDoc } from "firebase/firesto
 import { onValue, ref } from "firebase/database";
 import { firebase_database, firebase_firestore } from "@/app/lib/firebase/config";
 import { useAuthContext } from "@/app/context/auth";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import AvatarComp from "../avatar/avatar";
+import LoadingComp from "../loading/loading";
 import { IDefaultMessage, IMessages } from "@/app/lib/models/messages.model";
 import { IUser } from "@/app/lib/models/user.model";
+import { Input } from "@nextui-org/react";
+
+import { ROUTE_CHAT } from "@/app/lib/routes/routes";
 
 import "@/components/chat/chat.scss";
-import LoadingComp from "../loading/loading";
 
 export default function ChatComp({ chatid }: { chatid: string }) {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const paramMessage = searchParams.get('message')
+
     const [message, setMessage] = useState('')
     const [messagesList, setMessagesList] = useState<IDefaultMessage[]>([])
     const [cachedUsers, setCachedUsers] = useState<Record<string, IUser>>();
 
-    const [loadingMessages, setLoadingMessages] = useState(true);
+    const [loadingMessages, setLoadingMessages] = useState<boolean>(true);
+    const [paramMessageSent, setParamMessageSent] = useState<boolean>(false);
 
     const bottomRef = useRef<HTMLDivElement>(null);
     const messageRef = useRef<HTMLDivElement>(null);
@@ -131,15 +140,22 @@ export default function ChatComp({ chatid }: { chatid: string }) {
                 <div ref={bottomRef}></div>
             </div>
             <form onSubmit={handleForm} className="chat-input-container">
-                <input
-                    className="chat-input"
-                    onChange={(e) => setMessage(e.target.value)}
-                    required
+                <Input
+                    size="sm"
                     type="text"
-                    placeholder="Message.."
-                    autoComplete="off"
+                    variant="flat"
+                    placeholder="Message"
+                    radius="sm"
+                    value={message}
+                    onValueChange={setMessage}
+                    classNames={{
+                        inputWrapper: [
+                            "bg-stone-900",
+                        ]
+                    }}
                 />
             </form>
         </div>
     );
 };
+

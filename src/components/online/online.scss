@@ -11,6 +11,7 @@
 .chat-online-title-container {
     text-align: center;
     padding: 5px;
+    height: 30px;
 }
 
 .chat-online-title {
@@ -19,6 +20,11 @@
 }
 
 // USER
+
+.chat-online-user-root-container {
+    overflow-y: auto;
+    height: calc(100% - 30px);
+}
 
 .chat-online-user-container {
     display: flex;
@@ -47,4 +53,40 @@
 
     color: lightgray;
     margin-top: -5px;
+}
+
+// Loading
+
+.chat-online-loading-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.chat-online-loading-avatar {
+    display: flex;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+}
+
+.chat-online-loading-texts {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.chat-online-loading-text-big {
+    height: 0.75rem;
+    width: 80%;
+    border-radius: 0.5rem;
+}
+
+.chat-online-loading-text-small {
+    @extend .chat-online-loading-text-big;
+    width: 60%;
 }

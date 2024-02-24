@@ -7,9 +7,10 @@ import { Analytics } from '@vercel/analytics/react';
 import HeaderComp from "@/components/header/header";
 
 import { AuthContextProvider } from "./context/auth";
+import { PresenceContextProvider } from "./context/presence";
+import NextUIProviderComp from "./ui/nextprovider";
 
 import "@/app/styles/globals.scss";
-import { PresenceContextProvider } from "./context/presence";
 
 const lato = Lato({
   weight: ['400', '700'],
@@ -37,13 +38,15 @@ export default function Layout({
   return (
     <html lang="en">
       <body className={`${lato.className} ${dm_sans.className}`}>
-        <HeaderComp/>
+        <NextUIProviderComp>
+          <HeaderComp/>
 
-        <AuthContextProvider>
-          <PresenceContextProvider>
-            {children}
-          </PresenceContextProvider>
-        </AuthContextProvider>
+          <AuthContextProvider>
+            <PresenceContextProvider>
+              {children}
+            </PresenceContextProvider>
+          </AuthContextProvider>
+        </NextUIProviderComp>
 
         <SpeedInsights />
         <Analytics />

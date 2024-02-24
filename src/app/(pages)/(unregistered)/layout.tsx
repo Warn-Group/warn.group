@@ -3,6 +3,7 @@
 import { firebase_auth } from "@/app/lib/firebase/config";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { ROUTE_ROOT } from "@/app/lib/routes/routes";
 import LoadingComp from "@/components/loading/loading";
 
 export default function Layout({
@@ -16,7 +17,7 @@ export default function Layout({
 
     useEffect(() => {
         if (user) {
-            router.push('/');
+            router.push(ROUTE_ROOT);
         }
     }, [user]);
 
