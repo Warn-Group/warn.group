@@ -4,7 +4,7 @@ import Image from "next/image"
 import { useRouter, useSearchParams } from "next/navigation"; // client == navigation | server == router
 import { FormEvent, useRef, useState } from "react";
 import { signIn } from "@/app/lib/firebase/auth"
-import { ROUTE_SIGNUP } from "@/app/lib/routes/routes";
+import { ROUTE_ROOT, ROUTE_SIGNUP } from "@/app/lib/routes/routes";
 
 import SplineSoftobjectComp from "@/components/spline/softobject/spline";
 
@@ -22,7 +22,7 @@ export default function Signin() {
 
     const refPassword = useRef<HTMLInputElement>(null);
 
-    const redirectTo = searchParams.get("redirect") ?? '/'
+    const redirectTo = searchParams.get("redirect") ?? ROUTE_ROOT
 
     const handleForm = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault(); // prevent page refresh

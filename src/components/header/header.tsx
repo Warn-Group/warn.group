@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import '@/components/header/header.scss'
+import { ROUTE_ROOT } from '@/app/lib/routes/routes';
 
 export default function HeaderComp() {
     return (
@@ -10,21 +11,21 @@ export default function HeaderComp() {
                 <i>LEFT</i>
             </Link>
             <nav className="header-links header-nav">
-                <Link href="/">L0</Link>
-                <Link href="/">L1</Link>
-                <Link href="/">L2</Link>
-                <Link href="/">L3</Link>
+                <Link href={ROUTE_ROOT}>L0</Link>
+                <Link href={ROUTE_ROOT}>L1</Link>
+                <Link href={ROUTE_ROOT}>L2</Link>
+                <Link href={ROUTE_ROOT}>L3</Link>
             </nav>
         </div>
         <nav className="header-nav">
-            <Link href="/" className="header-center">WARN</Link>
+            <Link href={ROUTE_ROOT} className="header-center">WARN</Link>
         </nav>
         <div className="header-right">
             <nav className="header-links header-nav">
-                <Link href="/">R0</Link>
-                <Link href="/">R1</Link>
-                <Link href="/">R2</Link>
-                <Link href="/">R3</Link>
+                <Link href={ROUTE_ROOT}>R0</Link>
+                <Link href={ROUTE_ROOT}>R1</Link>
+                <Link href={ROUTE_ROOT}>R2</Link>
+                <Link href={ROUTE_ROOT}>R3</Link>
             </nav>
             <Link href="/auth/signin">
                 <i>AUTH</i>

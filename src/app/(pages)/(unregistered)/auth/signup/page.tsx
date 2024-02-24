@@ -7,7 +7,7 @@ import { signUp } from "@/app/lib/firebase/auth"
 import { IUser } from "@/app/lib/models/user.model";
 import { ref, serverTimestamp, set } from "firebase/database";
 import { firebase_database } from "@/app/lib/firebase/config";
-import { ROUTE_SIGNIN } from "@/app/lib/routes/routes";
+import { ROUTE_ROOT, ROUTE_SIGNIN } from "@/app/lib/routes/routes";
 
 import SplineSoftobjectComp from "@/components/spline/softobject/spline";
 
@@ -39,7 +39,7 @@ export default function Signup() {
     const [state_step2_error, setStep2Error] = useState<null | any>(null);
     const [state_success, setSuccess] = useState<boolean>(false);
 
-    const redirectTo = searchParams.get("redirect") ?? '/'
+    const redirectTo = searchParams.get("redirect") ?? ROUTE_ROOT
 
     const handleStep1Form = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
