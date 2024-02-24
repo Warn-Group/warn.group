@@ -81,7 +81,7 @@ export default function OnlineComp() {
                 ? 
                     <>
                         { Array.from({ length: 15 }, () => undefined).map((_, index) => (
-                            <div className="chat-online-loading-container">
+                            <div key={index} className="chat-online-loading-container">
                                 <div>
                                     <Skeleton className="chat-online-loading-avatar"/>
                                 </div>  
@@ -95,9 +95,22 @@ export default function OnlineComp() {
                 : <>
                     {
                         onlineUsers.map((user, index) => (
-                            <Popover showArrow placement="left">
+                            <Popover
+                                key={`${index}-${user.uid}`}
+                                showArrow
+                                placement="left"
+                                classNames={{
+                                    base: [  
+                                        "before:bg-neutral-950"
+                                    ],
+                                    content: [
+                                        "py-3 px-4 border-0 border-default-200",
+                                        "bg-neutral-950",
+                                    ],
+                                }}
+                            >
                                 <PopoverTrigger>
-                                    <li key={`${index}-${user.uid}`} className="flex items-center my-2 ml-2">
+                                    <li className="flex items-center my-2 ml-2">
                                         <AvatarComp user={user} presence={true} styleWidth={50} styleHeight={50}/>
                                         <div className="chat-online-user-info-container">
                                             <span className="chat-online-user-info-displayname">{user.displayName}</span>
