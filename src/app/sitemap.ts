@@ -1,11 +1,11 @@
 import { MetadataRoute } from 'next'
 
-export default function sitemap(): MetadataRoute.Sitemap {
-    const base_url = 'https://warn.group'
+import { ROUTE_BASE } from './lib/routes/routes'
 
+export default function sitemap(): MetadataRoute.Sitemap {
     return [
         {
-            url: `${base_url}`,
+            url: `${ROUTE_BASE}`,
             lastModified: new Date(),
             changeFrequency: 'weekly',
             priority: 1,

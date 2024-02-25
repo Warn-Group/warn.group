@@ -1,3 +1,6 @@
+// Base
+export const ROUTE_BASE = "https://warn.group";
+
 // Public
 export const ROUTE_ROOT = "/";
 export const ROUTE_PRIVACY = "/privacy";
