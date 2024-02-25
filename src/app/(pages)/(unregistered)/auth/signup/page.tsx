@@ -171,7 +171,8 @@ export default function Signup() {
                                 </div>
                                 <div className="auth-form-small-texts">
                                     <div className="auth-form-small-text">1/2</div>
-                                    <Link href={`${ROUTE_SIGNIN}${searchParams.get("redirect") && "?redirect=" + searchParams.get("redirect")}`} className="auth-form-small-text">Already member ?</Link>
+                                    <Link
+                                        href={`${ROUTE_SIGNIN}${searchParams.get("redirect") ? "?redirect=" + searchParams.get("redirect") : ''}`} className="auth-form-small-text">Already member ?</Link>
                                 </div>
                                 <div className="auth-form-submit-container">
                                     {state_step1_error && <p className="auth-form-error">{state_step1_error}</p>}

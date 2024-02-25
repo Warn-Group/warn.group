@@ -78,7 +78,11 @@ export default function Signin() {
                                 />
                             </div>
                             <div className="auth-form-small-texts">
-                                <Link href={`${ROUTE_SIGNUP}${searchParams.get("redirect") && "?redirect=" + searchParams.get("redirect")}`} className="auth-form-small-text">Create an account</Link>
+                                <Link 
+                                    href={
+                                        `${ROUTE_SIGNUP}${
+                                            searchParams.get("redirect") ? "?redirect=" + searchParams.get("redirect") : ''}`} className="auth-form-small-text"
+                                >Create an account</Link>
                                 <div className="auth-form-small-text">Forgot password ?</div>
                             </div>
                             <div className="auth-form-submit-container">
