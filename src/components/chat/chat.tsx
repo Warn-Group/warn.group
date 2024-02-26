@@ -91,8 +91,8 @@ export default function ChatComp({ chatid }: { chatid: string }) {
                         console.error("Error fetching user data:", error);
                     });
                 });
-
             }
+            setLoadingMessages(false);
         }, (error) => {
             console.error("Error fetching user data:", error);
         });
@@ -101,8 +101,6 @@ export default function ChatComp({ chatid }: { chatid: string }) {
 
     useEffect(() => {
         const margin = 400;
-
-        setLoadingMessages(false);
 
         bottomRef?.current?.scrollIntoView({behavior: 'smooth'});
 
@@ -117,25 +115,30 @@ export default function ChatComp({ chatid }: { chatid: string }) {
                 <h2 className="chat-title">{chatid}</h2>
             </div>
             <div className="chat-messages-container" ref={messageRef}>
-                { loadingMessages || messagesList?.length < 1 ? <LoadingComp style={{width: '100%', height: '100%'}}/> :
+                { !loadingMessages ?
                     <>
-                        {messagesList?.length > 0 && messagesList.map((message, index) => (
-                            <div key={`message-${index}`} className="chat-message-container">
-                                {cachedUsers &&
-                                    <AvatarComp user={cachedUsers[message.sentBy]}/>
-                                }
-                                <div className="chat-message-sub-container">
-                                    <div className="chat-message-info-container">
-                                        <div className="chat-message-info-displayname">{cachedUsers && cachedUsers[message.sentBy] ? cachedUsers[message.sentBy].displayName : 'Anonymous'}</div>
-                                        <div className="chat-message-info-sentat">{message.sentAt.toDate().toLocaleTimeString()} {message.sentAt.toDate().toLocaleDateString()}</div>
+                        { messagesList?.length < 1 ? <div>Be the first to send a message !</div> :
+                            <>
+                                {messagesList?.length > 0 && messagesList.map((message, index) => (
+                                    <div key={`message-${index}`} className="chat-message-container">
+                                        {cachedUsers &&
+                                            <AvatarComp user={cachedUsers[message.sentBy]}/>
+                                        }
+                                        <div className="chat-message-sub-container">
+                                            <div className="chat-message-info-container">
+                                                <div className="chat-message-info-displayname">{cachedUsers && cachedUsers[message.sentBy] ? cachedUsers[message.sentBy].displayName : 'Anonymous'}</div>
+                                                <div className="chat-message-info-sentat">{message.sentAt.toDate().toLocaleTimeString()} {message.sentAt.toDate().toLocaleDateString()}</div>
+                                            </div>
+                                            <div className="chat-message-content-container">
+                                                <div className="chat-message-content">{message.content}</div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="chat-message-content-container">
-                                        <div className="chat-message-content">{message.content}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                                ))}
+                            </>
+                        }
                     </>
+                    : <LoadingComp style={{width: '100%', height: '100%'}}/>
                 }
                 <div ref={bottomRef}></div>
             </div>
