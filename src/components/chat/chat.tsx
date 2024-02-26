@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Timestamp, arrayUnion, doc, onSnapshot, setDoc } from "firebase/firestore";
 import { onValue, ref } from "firebase/database";
 import { firebase_database, firebase_firestore } from "@/app/lib/firebase/config";
-import { useAuthContext } from "@/app/context/auth";
+import { useAuthContext } from "@/app/context/users";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import AvatarComp from "../avatar/avatar";

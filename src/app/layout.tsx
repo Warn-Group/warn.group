@@ -6,7 +6,7 @@ import { Analytics } from '@vercel/analytics/react';
 
 import HeaderComp from "@/components/header/header";
 
-import { AuthContextProvider } from "./context/auth";
+import { AuthContextProvider } from "./context/users";
 import { PresenceContextProvider } from "./context/presence";
 import NextUIProviderComp from "./ui/nextprovider";
 

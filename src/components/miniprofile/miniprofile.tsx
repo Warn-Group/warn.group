@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import AvatarComp from "../avatar/avatar";
 
 import "@/components/miniprofile/miniprofile.scss";
-import { useAuthContext } from "@/app/context/auth";
+import { useAuthContext } from "@/app/context/users";
 
 export default function MiniProfileComp({ user }: { user: IUser }) {
     const router = useRouter()
