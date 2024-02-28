@@ -6,8 +6,6 @@ import { FormEvent, useRef, useState } from "react";
 import { signIn } from "@/app/lib/firebase/auth"
 import { ROUTE_ROOT, ROUTE_SIGNUP } from "@/app/lib/routes/routes";
 
-import SplineSoftobjectComp from "@/components/spline/softobject/spline";
-
 import google_icon from "@/app/assets/icons/google_icon.svg"
 import incognito_icon from "@/app/assets/icons/incognito_icon.svg"
 
@@ -50,7 +48,6 @@ export default function Signin() {
     }
     return (
         <div className="auth-root-container">
-            <SplineSoftobjectComp/>
             <div className="auth-container">
                 <div className="auth-sub-container">
                     <h3 className="auth-title">Sign-in</h3>

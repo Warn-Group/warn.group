@@ -9,8 +9,6 @@ import { ref, serverTimestamp, set } from "firebase/database";
 import { firebase_database } from "@/app/lib/firebase/config";
 import { ROUTE_ROOT, ROUTE_SIGNIN } from "@/app/lib/routes/routes";
 
-import SplineSoftobjectComp from "@/components/spline/softobject/spline";
-
 import google_icon from "@/app/assets/icons/google_icon.svg"
 import incognito_icon from "@/app/assets/icons/incognito_icon.svg"
 
@@ -118,7 +116,6 @@ export default function Signup() {
     }
     return (
         <div className="auth-root-container" style={{ justifyContent: "flex-start"}}>
-            <SplineSoftobjectComp/>
             <div className="auth-container">
                 <div className="auth-sub-container">
                     <h3 className="auth-title">Sign-up</h3>

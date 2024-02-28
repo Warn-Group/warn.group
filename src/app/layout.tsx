@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react"
 import { Analytics } from '@vercel/analytics/react';
 
 import HeaderComp from "@/components/header/header";
+import SplineSoftobjectComp from "@/components/spline/softobject/spline";
 
 import { AuthContextProvider } from "./context/users";
 import NextUIProviderComp from "./ui/nextprovider";
@@ -40,6 +41,7 @@ export default function Layout({
         <NextUIProviderComp>
           <HeaderComp/>
 
+          <SplineSoftobjectComp/>
           <AuthContextProvider>
             {children}
           </AuthContextProvider>
