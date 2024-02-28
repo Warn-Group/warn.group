@@ -44,13 +44,13 @@ export const AuthContextProvider = ({ children } : AuthContextProviderProps) => 
     );
 };
 
-async function setPresence(user: User | undefined) {
+async function setPresence(user: User | undefined, presence?: string) {
     if (user) {
         const presenceRef = ref(firebase_database, `users/${user.uid}/presence`);
     
         try {
             await update(presenceRef, {
-                presence: 'online',
+                presence: presence ?? 'online',
                 lastChanged: serverTimestamp()
             });
         } catch(error) {

@@ -7,12 +7,18 @@ header {
     padding: 20px;
 }
 
-.header-left,
-.header-right {
+.header-left {
     display: flex;
     align-items: center;
     flex-grow: 1;
     max-width: 300px;
+    justify-content: left;
+}
+
+.header-right {
+    @extend .header-left;
+
+    justify-content: right;
 }
 
 .header-nav {
