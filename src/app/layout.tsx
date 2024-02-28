@@ -7,7 +7,6 @@ import { Analytics } from '@vercel/analytics/react';
 import HeaderComp from "@/components/header/header";
 
 import { AuthContextProvider } from "./context/users";
-import { PresenceContextProvider } from "./context/presence";
 import NextUIProviderComp from "./ui/nextprovider";
 
 import "@/app/styles/globals.scss";
@@ -42,9 +41,7 @@ export default function Layout({
           <HeaderComp/>
 
           <AuthContextProvider>
-            <PresenceContextProvider>
-              {children}
-            </PresenceContextProvider>
+            {children}
           </AuthContextProvider>
         </NextUIProviderComp>
 

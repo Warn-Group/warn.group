@@ -1,9 +1,10 @@
 "use client"
 import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
-import { firebase_auth } from '../lib/firebase/config';
+import { firebase_auth, firebase_database } from '../lib/firebase/config';
 
 import LoadingComp from '@/components/loading/loading';
+import { onDisconnect, ref, serverTimestamp, update } from 'firebase/database';
 
 interface AuthContextValue {
     user?: User | undefined;
@@ -22,9 +23,11 @@ export const AuthContextProvider = ({ children } : AuthContextProviderProps) => 
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(firebase_auth, (user) => {
+        const unsubscribe = onAuthStateChanged(firebase_auth, async (user) => {
             if (user) {
                 setUser(user);
+
+                setPresence(user);
             } else {
                 setUser(undefined);
             }
@@ -32,7 +35,7 @@ export const AuthContextProvider = ({ children } : AuthContextProviderProps) => 
         });
 
         return () => unsubscribe();
-    }, []);
+    });
 
     return (
         <AuthContext.Provider value={{ user }}>
@@ -40,3 +43,23 @@ export const AuthContextProvider = ({ children } : AuthContextProviderProps) => 
         </AuthContext.Provider>
     );
 };
+
+async function setPresence(user: User | undefined) {
+    if (user) {
+        const presenceRef = ref(firebase_database, `users/${user.uid}/presence`);
+    
+        try {
+            await update(presenceRef, {
+                presence: 'online',
+                lastChanged: serverTimestamp()
+            });
+        } catch(error) {
+            console.log("Error updating presence:", error);
+        }
+
+        onDisconnect(presenceRef).update({
+            presence: 'offline',
+            lastChanged: serverTimestamp()
+        });
+    }
+}
