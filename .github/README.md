@@ -5,15 +5,19 @@
 Run the development server:
 
 ```bash
-npm run dev
+bun run dev
+```
+
+## Install dependencies
+
+```bash
+bun install
 ```
 
 ## Update dependencies
 
-Update using npm:
-
 ```bash
-npm update
+bun update
 ```
 
 ## Database structure
