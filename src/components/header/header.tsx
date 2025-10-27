@@ -7,28 +7,16 @@ export default function HeaderComp() {
     return (
         <header>
             <div className="header-left">
-                <Link href={ROUTE_CHAT}>
-                    <i>CHAT</i>
+                <Link href={ROUTE_CHAT} className="header-link">
+                    CHAT
                 </Link>
-                <nav className="header-links header-nav hidden">
-                    <Link href={ROUTE_ROOT}>L0</Link>
-                    <Link href={ROUTE_ROOT}>L1</Link>
-                    <Link href={ROUTE_ROOT}>L2</Link>
-                    <Link href={ROUTE_ROOT}>L3</Link>
-                </nav>
             </div>
-            <nav className="header-nav">
+            <nav className="header-center-nav">
                 <Link href={ROUTE_ROOT} className="header-center">WARN</Link>
             </nav>
             <div className="header-right">
-                <nav className="header-links header-nav hidden">
-                    <Link href={ROUTE_ROOT}>R0</Link>
-                    <Link href={ROUTE_ROOT}>R1</Link>
-                    <Link href={ROUTE_ROOT}>R2</Link>
-                    <Link href={ROUTE_ROOT}>R3</Link>
-                </nav>
-                <Link href={ROUTE_SIGNIN}>
-                    <i>LOGIN</i>
+                <Link href={ROUTE_SIGNIN} className="header-link">
+                    LOGIN
                 </Link>
             </div>
         </header>
