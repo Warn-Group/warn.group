@@ -1,4 +1,4 @@
-@import '@/app/styles/colors.scss';
+@use '@/app/styles/colors.scss' as *;
 
 .chat-component-container {
     display: flex;

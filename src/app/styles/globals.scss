@@ -1,13 +1,20 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
+@theme {
   --foreground-rgb: 255, 255, 255;
+
+  --default-transition-duration: 200ms;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  margin: 0;
-  padding: 0;
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  
+  body {
+    color: rgb(var(--foreground-rgb));
+    margin: 0;
+    padding: 0;
+  }
 }
