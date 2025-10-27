@@ -1,11 +1,7 @@
 "use client";
 
-import Spline from '@splinetool/react-spline';
-
-import '@/components/spline/spline.scss'
+import SplineScene from '@/components/spline/SplineScene';
 
 export default function SplineBackgroundComp() {
-    return (
-        <Spline id="spline-hero" scene="https://prod.spline.design/exmhewFkaSg7oVzb/scene.splinecode" />
-    );
+    return <SplineScene sceneUrl="https://prod.spline.design/exmhewFkaSg7oVzb/scene.splinecode" />;
 }

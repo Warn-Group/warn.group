@@ -1,11 +1,7 @@
 "use client";
 
-import Spline from '@splinetool/react-spline';
-
-import '@/components/spline/spline.scss'
+import SplineScene from '@/components/spline/SplineScene';
 
 export default function SplineNotFoundComp() {
-    return (
-        <Spline id="spline-hero" scene="https://prod.spline.design/0MJI84A7qjSI6vyP/scene.splinecode" />
-    );
+    return <SplineScene sceneUrl="https://prod.spline.design/0MJI84A7qjSI6vyP/scene.splinecode" />;
 }
