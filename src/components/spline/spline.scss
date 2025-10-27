@@ -1,6 +1,6 @@
 #spline-hero {
     z-index: -1;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -11,7 +11,7 @@
 
 .spline-fallback {
     z-index: -1;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -44,6 +44,12 @@
         );
         border-radius: 50%;
         filter: blur(120px);
+
+        @media (max-width: 768px) {
+            bottom: -65%;
+            max-width: 1000px;
+            max-height: 1000px;
+        }
     }
 
     &::after {

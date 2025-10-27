@@ -41,10 +41,12 @@ export default function Layout({
         <NextUIProviderComp>
           <HeaderComp/>
 
-          <SplineSoftobjectComp/>
-          <AuthContextProvider>
-            {children}
-          </AuthContextProvider>
+          <main>
+            <SplineSoftobjectComp/>
+            <AuthContextProvider>
+              {children}
+            </AuthContextProvider>
+          </main>
         </NextUIProviderComp>
 
         <SpeedInsights />

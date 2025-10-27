@@ -1,8 +1,18 @@
 @use '@/app/styles/colors.scss' as *;
+@use '@/app/styles/variables.scss' as *;
 
 .miniprofile-container {
     min-width: 340px;
     max-width: 340px;
+
+    @media (max-width: $breakpoint-md) {
+        min-width: 280px;
+        max-width: 100%;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        min-width: 100%;
+    }
 }
 
 .miniprofile-user-root-container {
@@ -24,10 +34,14 @@
 .miniprofile-user-info-displayname {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.25rem;
     color: white;
-    margin-top: 12.5px;
-    margin-bottom: 12.5px;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: 1.1rem;
+    }
 }
 
 .miniprofile-user-info-status {

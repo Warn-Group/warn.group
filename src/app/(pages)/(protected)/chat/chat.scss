@@ -2,17 +2,38 @@
 @use '@/app/styles/variables.scss' as *;
 
 .chat-root-container {
-    height: calc(100vh - $header-height);
+    height: 100%;
     width: 100%;
     display: flex;
+    overflow: hidden;
+
+    @media (max-width: $breakpoint-md) {
+        flex-direction: column;
+    }
 }
 
 .chat-container {
     flex: 1;
-    padding: 10px;
+    padding: 0.625rem;
+
+    @media (min-width: $breakpoint-md) {
+        padding: 1rem;
+    }
 }
 
 .chat-online-container-root {
     width: 25%;
     max-width: 300px;
+    min-width: 200px;
+
+    @media (max-width: $breakpoint-lg) {
+        width: 30%;
+    }
+
+    @media (max-width: $breakpoint-md) {
+        width: 100%;
+        max-width: none;
+        max-height: 40vh;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
 }

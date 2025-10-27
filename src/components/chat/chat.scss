@@ -1,11 +1,18 @@
 @use '@/app/styles/colors.scss' as *;
+@use '@/app/styles/variables.scss' as *;
 
 .chat-component-container {
     display: flex;
     flex-direction: column;
     height: 100%;
     border: 1px solid rgba($background-darkgrey-super-dark, 0.75);
-    border-radius: 5px;
+    border-radius: 0.3125rem;
+
+    @media (max-width: $breakpoint-sm) {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
 }
 
 .chat-title-container {
@@ -26,20 +33,29 @@
 }
 
 .chat-input-container {
-    padding: 10px;
+    padding: 0.625rem;
     border-top: 1px solid rgba($background-darkgrey-super-dark, 0.75);
     display: flex;
+
+    @media (min-width: $breakpoint-md) {
+        padding: 1rem;
+    }
 }
 
 .chat-input {
     flex: 1;
     border: none;
     outline: none;
-    padding: 10px;
-    padding-left: 15px;
-    border-radius: 7.5px;
+    padding: 0.625rem;
+    padding-left: 1rem;
+    border-radius: 0.5rem;
     background: rgba($background-darkgrey-main, 0.75);
     color: rgba($background-white-main, 1);
+    font-size: 1rem;
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: 16px; // Évite le zoom automatique sur iOS
+    }
 }
 
 // MESSAGE

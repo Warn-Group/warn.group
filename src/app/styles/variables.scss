@@ -1,5 +1,4 @@
-// Global variables are going here.
-
-$header-height : 100px;
-
-$max-width: 750px;
+// Breakpoints (mobile-first)
+$breakpoint-sm: 640px;   // Mobile
+$breakpoint-md: 768px;   // Tablette
+$breakpoint-lg: 1024px;  // Desktop

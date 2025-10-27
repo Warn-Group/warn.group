@@ -2,7 +2,6 @@
 
 @theme {
   --foreground-rgb: 255, 255, 255;
-
   --default-transition-duration: 200ms;
   --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -12,9 +11,32 @@
     color-scheme: dark;
   }
   
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
   body {
-    color: rgb(var(--foreground-rgb));
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+  }
+
+  body {
+    height: 100dvh;
+    height: 100vh;
+    color: rgb(var(--foreground-rgb));
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+
+  body > div {
+    display: contents;
+  }
+
+  main {
+    overflow: hidden;
   }
 }
