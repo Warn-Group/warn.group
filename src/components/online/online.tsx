@@ -7,7 +7,7 @@ import { IUser } from "@/app/lib/models/user.model";
 import AvatarComp from "../avatar/avatar";
 import MiniProfileComp from "../miniprofile/miniprofile";
 
-import { Popover, PopoverTrigger, PopoverContent, Skeleton } from "@nextui-org/react";
+import { Popover, PopoverTrigger, PopoverContent, Skeleton } from "@heroui/react";
 
 import "@/components/online/online.scss";
 

@@ -10,7 +10,7 @@ import AvatarComp from "../avatar/avatar";
 import LoadingComp from "../loading/loading";
 import { IDefaultMessage, IMessages } from "@/app/lib/models/messages.model";
 import { IUser } from "@/app/lib/models/user.model";
-import { Input } from "@nextui-org/react";
+import { Input } from "@heroui/react";
 
 import { ROUTE_CHAT } from "@/app/lib/routes/routes";
 

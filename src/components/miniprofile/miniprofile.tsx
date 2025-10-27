@@ -1,6 +1,6 @@
 "use client"
 import { IUser } from "@/app/lib/models/user.model";
-import { Chip, Input, Tooltip, useDisclosure } from "@nextui-org/react";
+import { Chip, Input, Tooltip, useDisclosure } from "@heroui/react";
 import { useState } from "react";
 import { ROUTE_CHAT } from "@/app/lib/routes/routes";
 import { useRouter } from "next/navigation";
