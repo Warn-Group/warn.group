@@ -43,7 +43,13 @@ header {
     }
 
     @media (max-width: $breakpoint-md) {
-        display: none;
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: 0.9rem;
+        padding: 0.25rem;
     }
 }
 

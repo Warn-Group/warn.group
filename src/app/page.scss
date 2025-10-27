@@ -1,0 +1,98 @@
+@use '@/app/styles/variables.scss' as *;
+
+.home-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 2rem 4rem;
+
+    @media (max-width: $breakpoint-md) {
+        padding: 2rem;
+        align-items: flex-start;
+        padding-top: 15vh;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        padding: 1rem;
+        padding-top: 12vh;
+    }
+}
+
+.home-hero {
+    max-width: 1400px;
+    width: 100%;
+
+    @media (max-width: $breakpoint-md) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+.home-hero-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 8vw, 10rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0.85) 50%,
+        rgba(180, 40, 70, 0.9) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    @media (max-width: $breakpoint-md) {
+        font-size: clamp(2rem, 10vw, 6rem);
+        line-height: 1;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: clamp(1.5rem, 12vw, 4rem);
+        line-height: 1.1;
+        transform: scaleY(2.5);
+    }
+}
+
+.home-hero-line {
+    display: block;
+    animation: fadeInUp 0.8s ease-out backwards;
+    
+    @media (max-width: $breakpoint-md) {
+        margin: -0.5rem 0;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        margin: -0.5rem 0;
+    }
+    
+    &:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+    
+    &:nth-child(2) {
+        animation-delay: 0.3s;
+    }
+    
+    &:nth-child(3) {
+        animation-delay: 0.5s;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
