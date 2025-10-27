@@ -22,34 +22,48 @@
     &::before {
         content: '';
         position: absolute;
-        bottom: -50%;
+        bottom: -75%;
         left: 50%;
         transform: translateX(-50%);
-        width: 80vw;
-        height: 80vw;
-        max-width: 1000px;
-        max-height: 1000px;
+        width: 100vw;
+        height: 100vw;
+        max-width: 1400px;
+        max-height: 1400px;
         background: radial-gradient(
             circle at 50% 50%,
-            rgba(140, 30, 50, 0.9) 0%,
-            rgba(100, 20, 40, 0.7) 25%,
-            rgba(70, 15, 30, 0.5) 45%,
-            rgba(40, 10, 20, 0.3) 65%,
-            transparent 85%
+            rgba(140, 30, 50, 0.5) 0%,
+            rgba(120, 28, 48, 0.45) 15%,
+            rgba(100, 25, 42, 0.4) 28%,
+            rgba(80, 22, 38, 0.32) 40%,
+            rgba(60, 18, 32, 0.25) 52%,
+            rgba(45, 14, 26, 0.18) 63%,
+            rgba(30, 10, 20, 0.12) 73%,
+            rgba(18, 6, 14, 0.07) 83%,
+            rgba(8, 3, 8, 0.03) 92%,
+            transparent 100%
         );
         border-radius: 50%;
-        filter: blur(35px);
-        animation: organicPulse 8s ease-in-out infinite;
+        filter: blur(120px);
     }
-}
 
-@keyframes organicPulse {
-    0%, 100% {
-        transform: translateX(-50%) scale(1) translateY(0);
-        opacity: 0.9;
-    }
-    50% {
-        transform: translateX(-50%) scale(1.05) translateY(-2%);
-        opacity: 1;
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -70%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 110vw;
+        height: 110vw;
+        max-width: 1600px;
+        max-height: 1600px;
+        background: radial-gradient(
+            circle at 50% 50%,
+            rgba(90, 20, 35, 0.15) 0%,
+            rgba(60, 15, 25, 0.08) 40%,
+            rgba(30, 8, 15, 0.04) 70%,
+            transparent 100%
+        );
+        border-radius: 50%;
+        filter: blur(150px);
     }
 }
