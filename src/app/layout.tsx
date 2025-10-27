@@ -15,13 +15,17 @@ import "@/app/styles/globals.scss";
 const lato = Lato({
   weight: ['400', '700'],
   style: ['normal', 'italic'],
-  subsets: ['latin']
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
 });
 
 const dm_sans = DM_Sans({
   weight: ['400', '700', '800'],
   style: ['normal'],
-  subsets: ['latin']
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
 });
 
 export const metadata: Metadata = {
