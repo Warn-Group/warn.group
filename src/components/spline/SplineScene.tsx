@@ -15,10 +15,7 @@ interface SplineSceneProps {
 
 function FallbackBackground() {
     return (
-        <>
-            <div className="spline-fallback" />
-            <div className="spline-fallback-light" />
-        </>
+        <div className="spline-fallback" />
     );
 }
 

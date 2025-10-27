@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     padding: 2rem 4rem;
+    position: relative;
 
     @media (max-width: $breakpoint-md) {
         padding: 2rem;
@@ -18,14 +19,65 @@
     }
 }
 
+.home-watermark-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 35vw;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.01);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: -0.05em;
+    white-space: nowrap;
+
+    @media (max-width: $breakpoint-md) {
+        color: rgba(255, 255, 255, 0.006);
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        color: rgba(255, 255, 255, 0.005);
+    }
+}
+
 .home-hero {
     max-width: 1400px;
     width: 100%;
+    position: relative;
+    z-index: 1;
 
     @media (max-width: $breakpoint-md) {
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+}
+
+.home-cta-link {
+    display: inline-block;
+    margin-top: 3rem;
+    margin-left: 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.25rem;
+
+    &:hover {
+        color: rgba(255, 255, 255, 1);
+        border-bottom-color: rgba(255, 255, 255, 0.5);
+        transform: translateX(5px);
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        margin-top: 2rem;
+        font-size: 0.9rem;
     }
 }
 
@@ -57,7 +109,6 @@
     @media (max-width: $breakpoint-sm) {
         font-size: clamp(1.5rem, 12vw, 4rem);
         line-height: 1.1;
-        transform: scaleY(2.5);
     }
 }
 
